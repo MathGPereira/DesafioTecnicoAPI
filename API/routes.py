@@ -1,7 +1,8 @@
+from flask import request
 from API import app, render_template, url_for, flash, redirect, database, bcrypt
 from API.forms import FormularioCadastro, FormularioLogin
 from API.models import Usuario
-from flask_login import login_user, current_user
+from flask_login import logout_user, current_user, login_required, login_user
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -15,7 +16,12 @@ def home():
             login_user(usuario)
             flash(f"Login feito com sucesso no e-mail {formulario_login.email.data}.", "alert-success")
 
-            return redirect(url_for("usuario"))
+            parametro_next = request.args.get("next")
+
+            if parametro_next:
+                return redirect(url_for(parametro_next))
+            else:
+                return redirect(url_for("usuario"))
         else:
             flash("Email ou senha incorretos!", "alert-danger")
 
@@ -45,14 +51,22 @@ def cadastro():
     return render_template("cadastro.html", formulario_cadastro=formulario_cadastro)
 
 
+@app.route("/usuario")
+@login_required
+def usuario():
+    pass
+
+
+@app.route("/usuario/tratativas")
+@login_required
+def tratativas():
+    pass
+
+
 @app.route("/sair")
+@login_required
 def sair():
-    login_user()
+    logout_user()
     flash("Logout realizado com sucesso!", "alert-success")
 
     return redirect(url_for("home"))
-
-
-@app.route("/tratativas")
-def tratativas():
-    pass

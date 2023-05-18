@@ -11,6 +11,9 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///desafio.db"
 
 database = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
+
 login_manager = LoginManager(app)
+login_manager.login_view = "home"
+login_manager.login_message_category = "alert-warning"
 
 from API import routes
