@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import EqualTo, Email, Length, DataRequired, ValidationError
 from API.models import Usuario
+from API.token import token
 
 
 class FormularioLogin(FlaskForm):
@@ -23,3 +24,7 @@ class FormularioCadastro(FlaskForm):
 
         if usuario:
             raise ValidationError("E-mail já cadastrado! Cadastre-se com outro e-mail ou realize o login!")
+
+    def validate_token(self, token):
+        if token.data != token:
+            raise ValidationError("Token de cadastro inválido!")
