@@ -1,4 +1,4 @@
-from API import app, render_template, url_for, flash, redirect, database
+from API import app, render_template, url_for, flash, redirect, database, bcrypt
 from API.forms import FormularioCadastro, FormularioLogin
 from API.models import Usuario
 
@@ -22,7 +22,7 @@ def cadastro():
         usuario = Usuario(
             username=formulario_cadastro.username.data,
             email=formulario_cadastro.email.data,
-            senha=formulario_cadastro.senha.data,
+            senha=bcrypt.generate_password_hash(formulario_cadastro.senha.data),
             token=formulario_cadastro.token.data
         )
         database.session.add(usuario)
