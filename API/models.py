@@ -13,3 +13,12 @@ class Usuario(database.Model, UserMixin):
     email = database.Column(database.String, nullable=False, unique=True)
     senha = database.Column(database.String, nullable=False)
     token =  database.Column(database.String, nullable=False)
+
+class Cliente(database.Model, UserMixin):
+    id = database.Column(database.Integer, primary_key=True)
+    email = database.Column(database.String, nullable=False, unique=True)
+    status = database.Column(database.String, nullable=False)
+    valor = database.Column(database.Float, nullable=False)
+    forma_pagamento = database.Column(database.String, nullable=False)
+    parcelas = database.Column(database.Integer, nullable=False)
+    resposta = database.Column(database.String, nullable=False)

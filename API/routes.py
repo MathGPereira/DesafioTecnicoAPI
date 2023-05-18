@@ -70,3 +70,10 @@ def sair():
     flash("Logout realizado com sucesso!", "alert-success")
 
     return redirect(url_for("home"))
+
+
+@app.route("/hooks", methods=["GET", "POST"])
+def hooks():
+    web_hook = request.values.to_dict()
+    
+    return request.values.to_dict()
