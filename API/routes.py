@@ -2,7 +2,6 @@ from API import app, render_template, url_for, flash, redirect, database, bcrypt
 from API.forms import FormularioCadastro, FormularioLogin
 from API.models import Usuario
 from flask_login import login_user, current_user
-from API.token import token
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -29,7 +28,7 @@ def home():
 def cadastro():
     formulario_cadastro = FormularioCadastro()
 
-    if formulario_cadastro.validate_on_submit() and formulario_cadastro.token.data == token:
+    if formulario_cadastro.validate_on_submit():
         usuario = Usuario(
             username=formulario_cadastro.username.data,
             email=formulario_cadastro.email.data,
@@ -46,6 +45,14 @@ def cadastro():
     return render_template("cadastro.html", formulario_cadastro=formulario_cadastro)
 
 
-@app.route("/usuario")
-def usuario():
-    return render_template("usuario.html")
+@app.route("/sair")
+def sair():
+    login_user()
+    flash("Logout realizado com sucesso!", "alert-success")
+
+    return redirect(url_for("home"))
+
+
+@app.route("/tratativas")
+def tratativas():
+    pass
