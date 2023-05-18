@@ -10,6 +10,7 @@ class FormularioLogin(FlaskForm):
 
 
 class FormularioCadastro(FlaskForm):
+    username = StringField("Username", validators=[DataRequired(), Length(3, 20)])
     email = StringField("E-mail", validators=[DataRequired(), Email()])
     senha = PasswordField("Senha", validators=[DataRequired(), Length(8, 20)])
     confirma_senha = PasswordField("Confirmar senha", validators=[DataRequired(), EqualTo("senha")])
