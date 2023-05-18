@@ -1,23 +1,60 @@
 {% extends "base.html" %}
 {% block main %}
-    <form action="" method="post" class="container">
+    <form action="" method="POST" class="container">
+        {{ formulario_cadastro.csrf_token }}
         <fieldset>
             <legend>Cadastro</legend>
             <div class="form-group">
                 {{ formulario_cadastro.email.label(class="form-control-label") }}
-                {{ formulario_cadastro.email(class="form-control mb-3") }}
+                {% if formulario_cadastro.email.errors %}
+                    {{ formulario_cadastro.email(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for erro in formulario_cadastro.email.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ formulario_cadastro.email(class="form-control mb-3") }}
+                {% endif %}
             </div>
             <div class="form-group">
                 {{ formulario_cadastro.senha.label(class="form-control-label") }}
-                {{ formulario_cadastro.senha(class="form-control mb-3") }}
+                {% if formulario_cadastro.senha.errors %}
+                    {{ formulario_cadastro.senha(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for erro in formulario_cadastro.senha.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ formulario_cadastro.senha(class="form-control mb-3") }}
+                {% endif %}
             </div>
             <div class="form-group">
                 {{ formulario_cadastro.confirma_senha.label(class="form-control-label") }}
-                {{ formulario_cadastro.confirma_senha(class="form-control mb-3") }}
+                {% if formulario_cadastro.confirma_senha.errors %}
+                    {{ formulario_cadastro.confirma_senha(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for erro in formulario_cadastro.confirma_senha.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ formulario_cadastro.confirma_senha(class="form-control mb-3") }}
+                {% endif %}
             </div>
             <div class="form-group">
                 {{ formulario_cadastro.token.label(class="form-control-label") }}
-                {{ formulario_cadastro.token(class="form-control mb-3") }}
+                {% if formulario_cadastro.token.errors %}
+                    {{ formulario_cadastro.token(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for erro in formulario_cadastro.token.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ formulario_cadastro.token(class="form-control mb-3") }}
+                {% endif %}
             </div>
         </fieldset>
         {{ formulario_cadastro.botao_submit_cadastro(class="btn btn-primary mt-3") }}

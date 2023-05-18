@@ -1,8 +1,12 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, flash, redirect
+from flask_sqlalchemy import SQLAlchemy
 import os
 
-SECRET_KEY = os.urandom(32)
 app = Flask(__name__)
-app.config['SECRET_KEY'] = SECRET_KEY
+
+app.config["SECRET_KEY"] = os.urandom(32)
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///desafio.db"
+
+database = SQLAlchemy(app)
 
 from API import routes

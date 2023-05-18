@@ -1,15 +1,34 @@
 {% extends "base.html" %}
 {% block main %}
-    <form action="" method="post" class="container">
+    <form action="" method="POST" class="container">
+        {{ formulario_login.csrf_token }}
         <fieldset>
             <legend>Login</legend>
             <div class="form-group">
                 {{ formulario_login.email.label(class="form-control-label") }}
-                {{ formulario_login.email(class="form-control mb-3") }}
+                {% if formulario_login.email.errors %}
+                    {{ formulario_login.email(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for erro in formulario_login.email.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ formulario_login.email(class="form-control mb-3") }}
+                {% endif %}
             </div>
             <div class="form-group">
                 {{ formulario_login.senha.label(class="form-control-label") }}
-                {{ formulario_login.senha(class="form-control mb-3") }}
+                {% if formulario_login.senha.errors %}
+                    {{ formulario_login.senha(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for erro in formulario_login.senha.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ formulario_login.senha(class="form-control mb-3") }}
+                {% endif %}
             </div>
         </fieldset>
         {{ formulario_login.botao_submit_login(class="btn btn-primary mt-3") }}
