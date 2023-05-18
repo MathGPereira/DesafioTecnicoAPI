@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% block main %}
-    <form action="" method="post" class="container border">
+    <form action="" method="post" class="container">
         <fieldset>
             <legend>Login</legend>
             <div class="form-group">
                 {{ formulario_login.email.label(class="form-control-label") }}
-                {{ formulario_login.email(class="form-control") }}
+                {{ formulario_login.email(class="form-control mb-3") }}
             </div>
             <div class="form-group">
                 {{ formulario_login.senha.label(class="form-control-label") }}
-                {{ formulario_login.senha(class="form-control") }}
+                {{ formulario_login.senha(class="form-control mb-3") }}
             </div>
         </fieldset>
-        {{ formulario_login.botao_submit_login(class="btn btn-primary") }}
+        {{ formulario_login.botao_submit_login(class="btn btn-primary mt-3") }}
     </form>
 {% endblock %}
