@@ -1,4 +1,27 @@
 {% extends "base.html" %}
 {% block main %}
-    <h1>Área de cadastro</h1>
+    <div class="d-flex justify-content-center align-items-center">
+        <form action="" method="post" class="container border">
+            <fieldset>
+                <legend>Cadastro</legend>
+                <div class="form-group">
+                    {{ formulario_cadastro.email.label(class="form-control-label") }}
+                    {{ formulario_cadastro.email(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ formulario_cadastro.senha.label(class="form-control-label") }}
+                    {{ formulario_cadastro.senha(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ formulario_cadastro.confirma_senha.label(class="form-control-label") }}
+                    {{ formulario_cadastro.confirma_senha(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ formulario_cadastro.token.label(class="form-control-label") }}
+                    {{ formulario_cadastro.token(class="form-control") }}
+                </div>
+            </fieldset>
+            {{ formulario_cadastro.botao_submit_cadastro(class="btn btn-primary") }}
+        </form>
+    </div>
 {% endblock %}

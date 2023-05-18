@@ -1,10 +1,16 @@
 from API import app, render_template, url_for
+from API.forms import FormularioCadastro, FormularioLogin
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def home():
-    return render_template("login.html")
+    formulario_login = FormularioLogin()
 
-@app.route("/cadastro")
+    return render_template("login.html", formulario_login=formulario_login)
+
+
+@app.route("/cadastro", methods=["GET", "POST"])
 def cadastro():
-    return render_template("cadastro.html")
+    formulario_cadastro = FormularioCadastro()
+
+    return render_template("cadastro.html", formulario_cadastro=formulario_cadastro)
