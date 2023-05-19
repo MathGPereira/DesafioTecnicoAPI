@@ -14,8 +14,10 @@ class Usuario(database.Model, UserMixin):
     senha = database.Column(database.String, nullable=False)
     token =  database.Column(database.String, nullable=False)
 
+
 class Cliente(database.Model, UserMixin):
     id = database.Column(database.Integer, primary_key=True)
+    nome = database.Column(database.String, nullable=False)
     email = database.Column(database.String, nullable=False, unique=True)
     status = database.Column(database.String, nullable=False)
     valor = database.Column(database.Float, nullable=False)

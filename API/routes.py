@@ -1,7 +1,7 @@
 from flask import request
 from API import app, render_template, url_for, flash, redirect, database, bcrypt
 from API.forms import FormularioCadastro, FormularioLogin
-from API.models import Usuario
+from API.models import Usuario, Cliente
 from flask_login import logout_user, current_user, login_required, login_user
 
 
@@ -74,6 +74,40 @@ def sair():
 
 @app.route("/hooks", methods=["GET", "POST"])
 def hooks():
+    bd = []
     web_hook = request.values.to_dict()
-    
-    return request.values.to_dict()
+
+    if web_hook:
+        if web_hook["status"] == "aprovado":
+            resposta = f"Liberar acesso ao e-mail {web_hook['email']}"
+        elif web_hook["status"] == "reembolsado":
+            resposta = f"Retirar acesso dos cursos do e-mail {web_hook['email']}"
+        else:
+            resposta = f"Enviar mensagem de pagamento recusado"
+
+        cliente = Cliente(
+            nome=web_hook["nome"],
+            email=web_hook["email"],
+            status=web_hook["status"],
+            valor=web_hook["valor"],
+            forma_pagamento=web_hook["forma_pagamento"],
+            parcelas=web_hook["parcelas"],
+            resposta=resposta
+        )
+
+        with app.app_context():
+            database.session.add(cliente)
+            database.session.commit()
+
+    for pessoa in Cliente.query.all():
+        bd.append({
+            "nome": pessoa.nome,
+            "email": pessoa.email,
+            "status": pessoa.status,
+            "valor": pessoa.valor,
+            "forma_pagamento": pessoa.forma_pagamento,
+            "parcelas": pessoa.parcelas,
+            "resposta": pessoa.resposta
+        })
+
+    return bd
