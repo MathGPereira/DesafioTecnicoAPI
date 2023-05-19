@@ -6,8 +6,8 @@ from API.token import chave_token
 
 
 class FormularioFiltrar(FlaskForm):
-    nome = StringField("Nome", validators=[Length(3, 50)])
-    email = StringField("E-mail", validators=[Email()])
+    nome = StringField("Nome")
+    email = StringField("E-mail")
     status = StringField("Status")
     valor = FloatField("Valor pago")
     forma_pagamento = StringField("Forma de pagamento")

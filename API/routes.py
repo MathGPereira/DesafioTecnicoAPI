@@ -59,15 +59,23 @@ def usuario():
     return render_template("usuario.html", current_user=current_user)
 
 
-@app.route("/usuario/tratativas", methods=["GET", "POST"])
+@app.route("/tratativas", methods=["GET", "POST"])
 @login_required
 def tratativas():
     formulario_filtrar = FormularioFiltrar()
+    clientes = []
 
-    if formulario_filtrar.validate_on_submit():
-        pass
+    for pessoa in Cliente.query.filter_by(nome=formulario_filtrar.nome.data).all():
+        clientes.append({
+            "nome": pessoa.nome,
+            "email": pessoa.email,
+            "status": pessoa.status,
+            "valor": pessoa.valor,
+            "forma_pagamento": pessoa.forma_pagamento,
+            "parcelas": pessoa.parcelas
+        })
 
-    return render_template("tratativas.html", formulario_filtrar=formulario_filtrar)
+    return render_template("tratativas.html", formulario_filtrar=formulario_filtrar, clientes=clientes)
 
 
 @app.route("/sair")
