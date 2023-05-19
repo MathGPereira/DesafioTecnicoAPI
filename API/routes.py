@@ -19,7 +19,7 @@ def home():
             parametro_next = request.args.get("next")
 
             if parametro_next:
-                return redirect(url_for(parametro_next))
+                return redirect(url_for(parametro_next.replace("/", "")))
             else:
                 return redirect(url_for("usuario"))
         else:
@@ -41,8 +41,10 @@ def cadastro():
             senha=bcrypt.generate_password_hash(formulario_cadastro.senha.data),
             token=formulario_cadastro.token.data
         )
-        database.session.add(usuario)
-        database.session.commit()
+
+        with app.app_context():
+            database.session.add(usuario)
+            database.session.commit()
 
         flash("Cadastro realizado com sucesso! Realize o Login!", "alert-success")
 
@@ -54,13 +56,13 @@ def cadastro():
 @app.route("/usuario")
 @login_required
 def usuario():
-    pass
+    return render_template("usuario.html", current_user=current_user)
 
 
 @app.route("/usuario/tratativas")
 @login_required
 def tratativas():
-    pass
+    return render_template("tratativas.html")
 
 
 @app.route("/sair")

@@ -12,7 +12,7 @@ class Usuario(database.Model, UserMixin):
     username = database.Column(database.String, nullable=False)
     email = database.Column(database.String, nullable=False, unique=True)
     senha = database.Column(database.String, nullable=False)
-    token =  database.Column(database.String, nullable=False)
+    token = database.Column(database.String, nullable=False)
 
 
 class Cliente(database.Model, UserMixin):
