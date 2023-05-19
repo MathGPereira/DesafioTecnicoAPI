@@ -74,7 +74,8 @@ def tratativas():
             "status": pessoa.status,
             "valor": pessoa.valor,
             "forma_pagamento": pessoa.forma_pagamento,
-            "parcelas": pessoa.parcelas
+            "parcelas": pessoa.parcelas,
+            "resposta": pessoa.resposta
         })
 
     return render_template("tratativas.html", formulario_filtrar=formulario_filtrar, clientes=clientes)
@@ -96,9 +97,9 @@ def hooks():
 
     if web_hook:
         if web_hook["status"] == "aprovado":
-            resposta = f"Liberar acesso ao e-mail {web_hook['email']}"
+            resposta = f"Liberar acesso dos cursos"
         elif web_hook["status"] == "reembolsado":
-            resposta = f"Retirar acesso dos cursos do e-mail {web_hook['email']}"
+            resposta = f"Retirar acesso dos cursos"
         else:
             resposta = f"Enviar mensagem de pagamento recusado"
 

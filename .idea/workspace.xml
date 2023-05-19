@@ -7,8 +7,10 @@
     <list default="true" id="d6c6057e-c1c6-4b38-acf7-9112d113fcf9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/API/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/templates/tratativas.html" beforeDir="false" afterPath="$PROJECT_DIR$/API/templates/tratativas.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/templates/usuario.html" beforeDir="false" afterPath="$PROJECT_DIR$/API/templates/usuario.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/instance/desafio.db" beforeDir="false" afterPath="$PROJECT_DIR$/instance/desafio.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

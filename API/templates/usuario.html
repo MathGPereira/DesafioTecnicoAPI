@@ -2,6 +2,7 @@
 {% block main %}
     <div class="container">
         <h1>Bem vindo(a), {{ current_user.username }}</h1>
+        <h2>Listagem de informações do Banco de Dados</h2>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -11,6 +12,7 @@
                     <th scope="col">Valor</th>
                     <th scope="col">Forma Pagamento</th>
                     <th scope="col">Parcelas</th>
+                    <th scope="col">Ação</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,6 +24,7 @@
                         <td>{{ cliente.valor }}</td>
                         <td>{{ cliente.forma_pagamento }}</td>
                         <td>{{ cliente.parcelas }}</td>
+                        <td>{{ cliente.resposta }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
