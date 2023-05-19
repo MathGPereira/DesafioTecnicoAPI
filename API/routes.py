@@ -56,7 +56,9 @@ def cadastro():
 @app.route("/usuario")
 @login_required
 def usuario():
-    return render_template("usuario.html", current_user=current_user)
+    db = Cliente.query.all()
+
+    return render_template("usuario.html", current_user=current_user, db=db)
 
 
 @app.route("/tratativas", methods=["GET", "POST"])
