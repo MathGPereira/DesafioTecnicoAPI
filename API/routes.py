@@ -1,6 +1,6 @@
 from flask import request
 from API import app, render_template, url_for, flash, redirect, database, bcrypt
-from API.forms import FormularioCadastro, FormularioLogin
+from API.forms import FormularioCadastro, FormularioLogin, FormularioFiltrar
 from API.models import Usuario, Cliente
 from flask_login import logout_user, current_user, login_required, login_user
 
@@ -59,10 +59,15 @@ def usuario():
     return render_template("usuario.html", current_user=current_user)
 
 
-@app.route("/usuario/tratativas")
+@app.route("/usuario/tratativas", methods=["GET", "POST"])
 @login_required
 def tratativas():
-    return render_template("tratativas.html")
+    formulario_filtrar = FormularioFiltrar()
+
+    if formulario_filtrar.validate_on_submit():
+        pass
+
+    return render_template("tratativas.html", formulario_filtrar=formulario_filtrar)
 
 
 @app.route("/sair")

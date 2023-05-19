@@ -1,8 +1,17 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, IntegerField, FloatField
 from wtforms.validators import EqualTo, Email, Length, DataRequired, ValidationError
 from API.models import Usuario
 from API.token import chave_token
+
+
+class FormularioFiltrar(FlaskForm):
+    nome = StringField("Nome", validators=[Length(3, 50)])
+    email = StringField("E-mail", validators=[Email()])
+    status = StringField("Status")
+    valor = FloatField("Valor pago")
+    forma_pagamento = StringField("Forma de pagamento")
+    parcelas = IntegerField("Parcelas")
 
 
 class FormularioLogin(FlaskForm):
