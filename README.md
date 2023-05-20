@@ -15,7 +15,8 @@ tratados em uma aba e filtrá-los para procurar uma pessoa específica.
 
 ## Sumário
 1. [Tecnologias usadas](#tecnologias)
-2. [Contatos](#contato)
+2. [Deploy](#deploy)
+3. [Contatos](#contato)
 4. [Configurações](#configuracao)
     * [Instalação do Flask](#instalaFlask)
     * [Instalar Dependências](#instalaDependencia)
@@ -31,6 +32,11 @@ tratados em uma aba e filtrá-los para procurar uma pessoa específica.
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-E34F26?style=for-the-badge&logo=git&logoColor=white)
+
+<a id="deploy"></a>
+
+## Deploy
+1. [Render](https://desafiotecnicoapi.onrender.com)
 
 <a id="contato"></a>
 
